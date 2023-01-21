@@ -15,14 +15,13 @@ namespace CompetencyGrid {
         Font calibriBold = FontFactory.GetFont("Calibri Regular", BaseFont.CP1252, BaseFont.EMBEDDED, 12, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
         Font calibriHeader = FontFactory.GetFont("Calibri Regular", 11);
         Document doc;
+        //List<Subject> subjects = new List<Subject>();
 
         public CreateTemplateForm() {
             InitializeComponent();
         }
 
         private void btn_save_Click(object sender, EventArgs e) {
-            //save the file
-
             //check inputs
             bool _break = false;
             var alltbs = panel_create.Controls.OfType<CueTextBox>();
@@ -65,6 +64,42 @@ namespace CompetencyGrid {
                 Console.WriteLine("done");
                 doc.Close(); //!!
             }
+            this.Text = tb_fileName.Text;
+            panel_createSection.Visible = true;
+        }
+
+        //aborts the creation of the current template
+        private void btn_abort_Click(object sender, EventArgs e) {
+            doc.Close();
+            File.Delete(path + "/" + tb_fileName.Text + ".pdf");
+            Console.WriteLine("deleted");
+            this.Close();
+        }
+
+        //adds a new subject to the current template
+        /*public void addSubject(Subject subject) {
+            subjects.Add(subject);
+            listBox_subjects.Items.Add(subject.getName());
+        }*/
+
+        private void btn_addSubject_Click(object sender, EventArgs e) {
+            NewSubject temp = new NewSubject(this);
+            temp.Show();
+        }
+
+        /*private void btn_deleteSubject_Click(object sender, EventArgs e) {
+            string toDelete = listBox_subjects.Text;
+            foreach(Subject subject in subjects) {
+                if(subject.getName().Equals(toDelete)) {
+                    subjects.Remove(subject);
+                    listBox_subjects.Items.Remove(toDelete);
+                    return;
+                }
+            }
+        }*/
+
+        private void listBox_subjects_SelectedIndexChanged(object sender, EventArgs e) {
+
         }
     }
 }

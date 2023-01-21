@@ -26,10 +26,9 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vorlageErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vorlageBearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vorlageLadenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTemplatePanel = new System.Windows.Forms.Panel();
-            this.vorlageBearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,8 +47,7 @@
             this.startToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vorlageErstellenToolStripMenuItem,
             this.vorlageBearbeitenToolStripMenuItem,
-            this.vorlageLadenToolStripMenuItem,
-            this.einstellungenToolStripMenuItem});
+            this.vorlageLadenToolStripMenuItem});
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.startToolStripMenuItem.Text = "Start";
@@ -60,6 +58,12 @@
             this.vorlageErstellenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vorlageErstellenToolStripMenuItem.Text = "Vorlage erstellen";
             this.vorlageErstellenToolStripMenuItem.Click += new System.EventHandler(this.vorlageErstellenToolStripMenuItem_Click);
+            // 
+            // vorlageBearbeitenToolStripMenuItem
+            // 
+            this.vorlageBearbeitenToolStripMenuItem.Name = "vorlageBearbeitenToolStripMenuItem";
+            this.vorlageBearbeitenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vorlageBearbeitenToolStripMenuItem.Text = "Vorlage bearbeiten";
             // 
             // vorlageLadenToolStripMenuItem
             // 
@@ -74,19 +78,6 @@
             this.createTemplatePanel.Name = "createTemplatePanel";
             this.createTemplatePanel.Size = new System.Drawing.Size(817, 480);
             this.createTemplatePanel.TabIndex = 1;
-            // 
-            // vorlageBearbeitenToolStripMenuItem
-            // 
-            this.vorlageBearbeitenToolStripMenuItem.Name = "vorlageBearbeitenToolStripMenuItem";
-            this.vorlageBearbeitenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.vorlageBearbeitenToolStripMenuItem.Text = "Vorlage bearbeiten";
-            // 
-            // einstellungenToolStripMenuItem
-            // 
-            this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.einstellungenToolStripMenuItem.Text = "Einstellungen";
-            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -115,7 +106,6 @@
         private System.Windows.Forms.ToolStripMenuItem vorlageLadenToolStripMenuItem;
         private System.Windows.Forms.Panel createTemplatePanel;
         private System.Windows.Forms.ToolStripMenuItem vorlageBearbeitenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
     }
 }
 

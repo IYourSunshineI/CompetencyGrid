@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CompetencyGrid {
-    internal static class Program {
+    /*internal static class Program {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -15,5 +15,5 @@ namespace CompetencyGrid {
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
-    }
+    }*/
 }
