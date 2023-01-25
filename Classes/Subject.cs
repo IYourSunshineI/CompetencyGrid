@@ -10,14 +10,25 @@ namespace CompetencyGrid.Classes {
     [DataContract]
     public class Subject {
         [DataMember]
-        public string name;
+        private string name;
 
         [DataMember]
-        public List<string> competencies;
+        private List<Subject> subSections;
+
+        [DataMember]
+        private List<string> competencies;
 
         public Subject(string name) {
             this.name = name;
-            this.competencies = new List<string>();
+            competencies = new List<string>();
+        }
+
+        public Subject(string name, List<string> subSections) {
+            this.name = name;
+            this.subSections = new List<Subject>();
+            foreach(string s in subSections) {
+                this.subSections.Add(new Subject(s));
+            }
         }
 
         public void addCompetence(string competence) {
@@ -38,6 +49,10 @@ namespace CompetencyGrid.Classes {
 
         public List<string> getCompetencies() { 
             return competencies;
+        }
+
+        public List<Subject> getSubSections() {
+            return subSections;
         }
 
         public string toString() {

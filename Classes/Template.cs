@@ -46,6 +46,10 @@ namespace CompetencyGrid {
             subjects.Add(new Subject(name));
         }
 
+        public void addSubject(string name, List<string> subSections) {
+            subjects.Add(new Subject(name, subSections));
+        }
+
         public void removeSubject(string name) {
             foreach (Subject subject in subjects) {
                 if (subject.getName().Equals(name)) {
@@ -143,10 +147,23 @@ namespace CompetencyGrid {
                 "umsetzten");
             temp.addCompetence("Sachunterricht", "Du kannst Auswirkungen des eigenen Verhaltens auf " +
                 "die Natur nennen und Fehlverhalten erkennen.");
-            for(int i = 0; i < 20; i++) {
+            for(int i = 0; i < 10; i++) {
                 temp.addSubject(i.ToString());
                 temp.addCompetence(i.ToString(), (i + 10).ToString());
+                if(i == 9) {
+                    temp.addCompetence(i.ToString(), (i + 10).ToString());
+                    temp.addCompetence(i.ToString(), (i + 10).ToString());
+                }
             }
+            List<string> subSections = new List<string> {
+                "Sprechen",
+                "Lesen",
+                "Schreiben",
+                "Verfassen von Texten",
+                "Rechtschreiben",
+                "Sprachbetrachtung"
+            };
+            temp.addSubject("Deutsch, Lesen, Schreiben", subSections);
             ObjectManager.SaveObject(temp, "Templates", "temp.xml");
 
             Printer.printToPDF("PDFs", temp);

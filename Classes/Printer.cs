@@ -1,9 +1,11 @@
-﻿using iTextSharp.text;
+﻿using iText.Layout.Element;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Font = iTextSharp.text.Font;
+using Paragraph = iTextSharp.text.Paragraph;
 
 namespace CompetencyGrid.Classes {
     public static class Printer {
@@ -28,51 +30,47 @@ namespace CompetencyGrid.Classes {
 
             Document doc = new Document();
             try {
-                PdfWriter.GetInstance(doc, new FileStream(folderName + "/" + template.getName() + ".pdf", FileMode.Create));
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(folderName + "/" + template.getName() + ".pdf", FileMode.Create));
                 doc.Open();
+                doc.SetMargins(doc.LeftMargin, doc.RightMargin, 80, doc.BottomMargin);
+                //add header on each page
+                writer.PageEvent = new Header(template.getHeader(), calibriHeader);
 
-                Paragraph p = new Paragraph(template.getHeader(), calibriHeader);
-                p.SpacingAfter = 15f;
-                doc.Add(p);
-
-                p = new Paragraph(template.getDescription(), calibriBold);
+                Paragraph p = new Paragraph("\n" + template.getDescription(), calibriBold);
                 p.SpacingAfter = 15f;
                 doc.Add(p);
 
                 //creating Subject with corresponding competencies and table
                 List<Subject> subjects = template.getSubjects();
-                foreach (Subject s in subjects) {
-                    p = new Paragraph(s.getName().ToUpper(), calibriBold);
-                    p.SpacingAfter = 4f;
-                    doc.Add(p);
+                for (int index = 0; index < subjects.Count; index++) {
+                    Subject s = subjects[index];
+                    Paragraph SubjectParagraph = new Paragraph(s.getName().ToUpper(), calibriBold);
 
                     //Table setup
                     PdfPTable table = new PdfPTable(4);
-
-                    //fix absolute width of table
                     table.WidthPercentage = 100;
-                    //table.LockedWidth = true;
-
-                    //relative col widths
                     float[] widths = new float[] { 17f, 1f, 1f, 1f };
                     table.SetWidths(widths);
                     table.HorizontalAlignment = 0;
                     table.DefaultCell.VerticalAlignment = 0;
                     table.DefaultCell.Padding = 5;
                     table.DefaultCell.MinimumHeight = 22.5f;
+                    table.KeepTogether = true;
                     //-------------------
+                    PdfPCell cell = new PdfPCell(SubjectParagraph);
+                    cell.FixedHeight = 20;
+                    cell.Colspan = 4;
+                    cell.Border = 0;
+                    table.AddCell(cell);
 
-                    List<string> competencies = s.getCompetencies();
-                    foreach (string c in competencies) {
-                        p = new Paragraph(c, calibriNormal);
-                        table.AddCell(p);
-
-                        p = new Paragraph(((char)0xFC).ToString(), windingsNormal);
-                        table.AddCell(p);
-                        table.AddCell(p);
-                        table.AddCell(p);
+                    List<Subject> subS = s.getSubSections();
+                    if (subS == null) {
+                        buildTable(s, table, false);
+                    } else {
+                        foreach (Subject sub in subS) {
+                            buildTable(sub, table, true);
+                        }
                     }
-                    table.SpacingAfter = 10f;
                     doc.Add(table);
                 }
             } catch (DocumentException e) {
@@ -87,5 +85,26 @@ namespace CompetencyGrid.Classes {
         }
 
         public static void printToPDF(string folderName, CompetencyForm form) { }
+
+        private static void buildTable(Subject s, PdfPTable table, bool subSection) {
+            List<string> competencies = s.getCompetencies();
+            foreach (string c in competencies) {
+                Paragraph p;
+                if (subSection) {
+                    PdfPCell cell = new PdfPCell(new Paragraph(s.getName(), calibriNormal));
+                    cell.Colspan = 4;
+                    cell.Border = 0;
+                    table.AddCell(cell);
+                }
+                p = new Paragraph(c, calibriNormal);
+                table.AddCell(p);
+
+                p = new Paragraph(((char)0xFC).ToString(), windingsNormal);
+                table.AddCell(p);
+                table.AddCell(p);
+                table.AddCell(p);
+            }
+            table.SpacingAfter = 10f;
+        }
     }
 }
