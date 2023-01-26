@@ -18,17 +18,28 @@ namespace CompetencyGrid.Classes {
         [DataMember]
         private List<string> competencies;
 
+        [DataMember]
+        private List<string> optionalSpecifications;
+
+        [DataMember]
+        private Dictionary<string, int> compScores;
+
         public Subject(string name) {
             this.name = name;
             competencies = new List<string>();
+            compScores = new Dictionary<string, int>();
         }
 
-        public Subject(string name, List<string> subSections) {
-            this.name = name;
-            this.subSections = new List<Subject>();
-            foreach(string s in subSections) {
-                this.subSections.Add(new Subject(s));
-            }
+        public void addSubSection(Subject sub) {
+            if(subSections == null)
+                subSections = new List<Subject>();
+            subSections.Add(sub);
+        }
+
+        public void addOptionalSpecification(string spec) {
+            if(optionalSpecifications == null)
+                optionalSpecifications = new List<string>();
+            optionalSpecifications.Add(spec);
         }
 
         public void addCompetence(string competence) {
@@ -53,6 +64,18 @@ namespace CompetencyGrid.Classes {
 
         public List<Subject> getSubSections() {
             return subSections;
+        }
+
+        public List<string> getOptionalSpecifications() {
+            return optionalSpecifications;
+        }
+
+        public void addCompScore(string comp, int score) {
+            compScores[comp] = score;
+        }
+
+        public int getCompScore(string comp) {
+            return compScores[comp];
         }
 
         public string toString() {

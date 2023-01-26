@@ -131,6 +131,7 @@
   <ItemGroup>
     <Compile Include="Classes\CompetencyForm.cs" />
     <Compile Include="Classes\Header.cs" />
+    <Compile Include="Classes\MyDocument.cs" />
     <Compile Include="Classes\Printer.cs" />
     <Compile Include="Classes\Subject.cs" />
     <Compile Include="Forms\CreateTemplateForm.cs">
