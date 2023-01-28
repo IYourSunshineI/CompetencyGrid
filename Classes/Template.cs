@@ -45,6 +45,17 @@ namespace CompetencyGrid {
             subjects = new List<Subject>();
         }
 
+        public void refactor(string name, string SKZ, string ort, string plz, string adr, string klasse, string schoolYear, string semester) {
+            this.name = name;
+            this.klasse = klasse;
+            this.SKZ = SKZ;
+            this.ort = ort;
+            this.plz = plz;
+            this.adr = adr;
+            this.schoolYear = schoolYear;
+            this.semester = semester;
+        }
+
         public void addSubject(string name) {
             subjects.Add(new Subject(name));
         }
@@ -118,15 +129,17 @@ namespace CompetencyGrid {
             return adr;
         }
 
-        public string toString() {
+        public override string ToString() {
             string temp = name + "\n";
             foreach (Subject subject in subjects) {
-                temp += "\t" + subject.toString() + "\n";
+                temp += "\t" + subject.ToString() + "\n";
             }
             return temp;
         }
     }
 
+    //Test class
+    /*
     public static class Test {
         static void Main(string[] args) {
             Template temp = new Template("temp", "318.501", "Würflach", "2732", "Neunkirchner Str. 76", "1", "2022/23", "1");
@@ -252,13 +265,9 @@ namespace CompetencyGrid {
             ObjectManager.SaveObject(myform, "Templates", "me.xml");
             Printer.printToPDF("PDFs", temp);
             Printer.printToPDF("PDFs", myform);
-            /*
+            
             Template temp = ObjectManager.LoadObject<Template>("Templates", "temp.xml");
-            Console.Write(temp.toString());
-            temp.addCompetence("Religion", "amen");
-            temp.removeSubject("amk");
-            ObjectManager.SaveObject(temp, "Templates", "temp.xml");
-            */
+            Printer.printToPDF("PDFs", temp);            
         }
-    }
+    }*/
 }

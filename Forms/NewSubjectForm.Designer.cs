@@ -1,5 +1,5 @@
 ﻿namespace CompetencyGrid {
-    partial class NewSubject {
+    partial class NewSubjectForm {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -47,7 +47,7 @@
             this.btn_add.UseVisualStyleBackColor = true;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
-            // NewSubject
+            // NewSubjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -58,7 +58,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximumSize = new System.Drawing.Size(500, 100);
             this.MinimumSize = new System.Drawing.Size(500, 100);
-            this.Name = "NewSubject";
+            this.Name = "NewSubjectForm";
             this.Text = "Neuer Themenbereich";
             this.ResumeLayout(false);
             this.PerformLayout();

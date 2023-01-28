@@ -36,6 +36,15 @@ namespace CompetencyGrid.Classes {
             subSections.Add(sub);
         }
 
+        public void removeSubSection(string temp) {
+            foreach (Subject subject in subSections) {
+                if (subject.getName().Equals(temp)) {
+                    subSections.Remove(subject);
+                    return;
+                }
+            }
+        }
+
         public void addOptionalSpecification(string spec) {
             if(optionalSpecifications == null)
                 optionalSpecifications = new List<string>();
@@ -78,10 +87,16 @@ namespace CompetencyGrid.Classes {
             return compScores[comp];
         }
 
-        public string toString() {
+        public override string ToString() {
             string temp = name + "\n";
-            foreach (string competence in competencies) {
-                temp += "\t\t" + competence + "\n";
+            if (subSections != null) {
+                foreach (Subject s in subSections) {
+                    temp += "\t\t" + s.ToString() + "\n";
+                }
+            } else {
+                foreach (string competence in competencies) {
+                    temp += "\t\t" + competence + "\n";
+                }
             }
             return temp;
         }
