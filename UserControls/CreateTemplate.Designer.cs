@@ -27,7 +27,7 @@
             this.labelSKZ = new System.Windows.Forms.Label();
             this.labelOrt = new System.Windows.Forms.Label();
             this.labelAdresse = new System.Windows.Forms.Label();
-            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_next = new System.Windows.Forms.Button();
             this.labelName = new System.Windows.Forms.Label();
             this.labelKlasse = new System.Windows.Forms.Label();
             this.labelSemester = new System.Windows.Forms.Label();
@@ -78,17 +78,17 @@
             this.labelAdresse.TabIndex = 34;
             this.labelAdresse.Text = "Adresse";
             // 
-            // btn_save
+            // btn_next
             // 
-            this.btn_save.AutoSize = true;
-            this.btn_save.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_save.Location = new System.Drawing.Point(502, 331);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(79, 27);
-            this.btn_save.TabIndex = 33;
-            this.btn_save.Text = "Speichern";
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            this.btn_next.AutoSize = true;
+            this.btn_next.Font = new System.Drawing.Font("Roboto-Light", 10F);
+            this.btn_next.Location = new System.Drawing.Point(502, 331);
+            this.btn_next.Name = "btn_next";
+            this.btn_next.Size = new System.Drawing.Size(79, 27);
+            this.btn_next.TabIndex = 33;
+            this.btn_next.Text = "Weiter";
+            this.btn_next.UseVisualStyleBackColor = true;
+            this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
             // labelName
             // 
@@ -212,7 +212,7 @@
             this.Controls.Add(this.labelOrt);
             this.Controls.Add(this.tb_Adr);
             this.Controls.Add(this.labelAdresse);
-            this.Controls.Add(this.btn_save);
+            this.Controls.Add(this.btn_next);
             this.Controls.Add(this.tb_semester);
             this.Controls.Add(this.tb_schuljahr);
             this.Controls.Add(this.tb_klasse);
@@ -243,7 +243,7 @@
         private System.Windows.Forms.Label labelOrt;
         private CueTextBox tb_Adr;
         private System.Windows.Forms.Label labelAdresse;
-        private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_next;
         private CueTextBox tb_semester;
         private CueTextBox tb_schuljahr;
         private CueTextBox tb_klasse;

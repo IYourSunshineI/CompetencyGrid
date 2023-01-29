@@ -23,35 +23,35 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.createTemplate1 = new CompetencyGrid.Forms.CreateTemplate();
-            this.createSection1 = new CompetencyGrid.Forms.CreateSection();
+            this.createSection = new CompetencyGrid.Forms.CreateSection();
+            this.createTemplate = new CompetencyGrid.Forms.CreateTemplate();
             this.SuspendLayout();
             // 
-            // createTemplate1
+            // createSection
             // 
-            this.createTemplate1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createTemplate1.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createTemplate1.Location = new System.Drawing.Point(0, 0);
-            this.createTemplate1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.createTemplate1.MaximumSize = new System.Drawing.Size(584, 361);
-            this.createTemplate1.MinimumSize = new System.Drawing.Size(584, 361);
-            this.createTemplate1.Name = "createTemplate1";
-            this.createTemplate1.Size = new System.Drawing.Size(584, 361);
-            this.createTemplate1.TabIndex = 2;
-            this.createTemplate1.TabStop = false;
+            this.createSection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createSection.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createSection.Location = new System.Drawing.Point(0, 0);
+            this.createSection.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.createSection.MaximumSize = new System.Drawing.Size(584, 361);
+            this.createSection.MinimumSize = new System.Drawing.Size(584, 361);
+            this.createSection.Name = "createSection";
+            this.createSection.Size = new System.Drawing.Size(584, 361);
+            this.createSection.TabIndex = 1;
+            this.createSection.TabStop = false;
             // 
-            // createSection1
+            // createTemplate
             // 
-            this.createSection1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.createSection1.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createSection1.Location = new System.Drawing.Point(0, 0);
-            this.createSection1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.createSection1.MaximumSize = new System.Drawing.Size(584, 361);
-            this.createSection1.MinimumSize = new System.Drawing.Size(584, 361);
-            this.createSection1.Name = "createSection1";
-            this.createSection1.Size = new System.Drawing.Size(584, 361);
-            this.createSection1.TabIndex = 1;
-            this.createSection1.TabStop = false;
+            this.createTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.createTemplate.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createTemplate.Location = new System.Drawing.Point(0, 0);
+            this.createTemplate.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.createTemplate.MaximumSize = new System.Drawing.Size(584, 361);
+            this.createTemplate.MinimumSize = new System.Drawing.Size(584, 361);
+            this.createTemplate.Name = "createTemplate";
+            this.createTemplate.Size = new System.Drawing.Size(584, 361);
+            this.createTemplate.TabIndex = 2;
+            this.createTemplate.TabStop = false;
             // 
             // CreateTemplateForm
             // 
@@ -59,8 +59,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.createTemplate1);
-            this.Controls.Add(this.createSection1);
+            this.Controls.Add(this.createSection);
+            this.Controls.Add(this.createTemplate);
             this.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximumSize = new System.Drawing.Size(600, 400);
@@ -72,7 +72,7 @@
         }
 
         #endregion
-        private Forms.CreateSection createSection1;
-        private Forms.CreateTemplate createTemplate1;
+        private Forms.CreateSection createSection;
+        private Forms.CreateTemplate createTemplate;
     }
 }

@@ -28,7 +28,7 @@
             this.btn_addSubject = new System.Windows.Forms.Button();
             this.btn_previous = new System.Windows.Forms.Button();
             this.btn_next = new System.Windows.Forms.Button();
-            this.btn_done = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
             this.listBox_subjects = new System.Windows.Forms.ListBox();
             this.label_competenceNumber = new System.Windows.Forms.Label();
             this.tb_competence = new System.Windows.Forms.TextBox();
@@ -95,17 +95,17 @@
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
             // 
-            // btn_done
+            // btn_save
             // 
-            this.btn_done.AutoSize = true;
-            this.btn_done.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_done.Location = new System.Drawing.Point(496, 331);
-            this.btn_done.Name = "btn_done";
-            this.btn_done.Size = new System.Drawing.Size(85, 27);
-            this.btn_done.TabIndex = 7;
-            this.btn_done.Text = "Fertig";
-            this.btn_done.UseVisualStyleBackColor = true;
-            this.btn_done.Click += new System.EventHandler(this.btn_done_Click);
+            this.btn_save.AutoSize = true;
+            this.btn_save.Font = new System.Drawing.Font("Roboto-Light", 10F);
+            this.btn_save.Location = new System.Drawing.Point(496, 331);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(85, 27);
+            this.btn_save.TabIndex = 7;
+            this.btn_save.Text = "Speichern";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // listBox_subjects
             // 
@@ -115,6 +115,7 @@
             this.listBox_subjects.Name = "listBox_subjects";
             this.listBox_subjects.Size = new System.Drawing.Size(221, 96);
             this.listBox_subjects.TabIndex = 9;
+            this.listBox_subjects.SelectedIndexChanged += new System.EventHandler(this.listBox_subjects_SelectedIndexChanged);
             // 
             // label_competenceNumber
             // 
@@ -156,7 +157,7 @@
             this.Controls.Add(this.btn_addSubject);
             this.Controls.Add(this.btn_previous);
             this.Controls.Add(this.btn_next);
-            this.Controls.Add(this.btn_done);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.listBox_subjects);
             this.Controls.Add(this.label_competenceNumber);
             this.Controls.Add(this.tb_competence);
@@ -180,7 +181,7 @@
         private System.Windows.Forms.Button btn_addSubject;
         private System.Windows.Forms.Button btn_previous;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.Button btn_done;
+        private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.ListBox listBox_subjects;
         private System.Windows.Forms.Label label_competenceNumber;
         private System.Windows.Forms.TextBox tb_competence;

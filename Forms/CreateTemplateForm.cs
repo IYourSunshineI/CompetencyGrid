@@ -10,6 +10,7 @@ namespace CompetencyGrid {
 
         public CreateTemplateForm() {
             InitializeComponent();
+            createTemplate.BringToFront();
         }
 
         public void switchForm(UserControl temp) {

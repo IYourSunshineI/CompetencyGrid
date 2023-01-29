@@ -31,8 +31,10 @@ namespace CompetencyGrid.Classes {
         }
 
         public void addSubSection(Subject sub) {
-            if(subSections == null)
+            if (subSections == null) {
                 subSections = new List<Subject>();
+                competencies = null;
+            }
             subSections.Add(sub);
         }
 
@@ -45,8 +47,16 @@ namespace CompetencyGrid.Classes {
             }
         }
 
+        public void removeSubSection(Subject sub) {
+            subSections.Remove(sub);
+            if(subSections.Count == 0) {
+                subSections = null;
+                competencies = new List<string>();
+            }
+        }
+
         public void addOptionalSpecification(string spec) {
-            if(optionalSpecifications == null)
+            if (optionalSpecifications == null)
                 optionalSpecifications = new List<string>();
             optionalSpecifications.Add(spec);
         }
@@ -67,12 +77,25 @@ namespace CompetencyGrid.Classes {
             return name;
         }
 
-        public List<string> getCompetencies() { 
+        public List<string> getCompetencies() {
             return competencies;
         }
 
         public List<Subject> getSubSections() {
             return subSections;
+        }
+
+        public bool hasSubSections() {
+            return subSections != null;
+        }
+
+        public Subject getSubSection(string name) {
+            foreach (Subject s in subSections) {
+                if (s.getName().Equals(name)) {
+                    return s;
+                }
+            }
+            return null;
         }
 
         public List<string> getOptionalSpecifications() {

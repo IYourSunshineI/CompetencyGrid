@@ -16,7 +16,7 @@ namespace CompetencyGrid.Forms {
             InitializeComponent();
         }
 
-        private void btn_save_Click(object sender, EventArgs e) {
+        private void btn_next_Click(object sender, EventArgs e) {
             bool flag = false;
             foreach (CueTextBox tb in Controls.OfType<CueTextBox>()) {
                 if (tb.Text == null || tb.Text == string.Empty) {

@@ -73,6 +73,10 @@ namespace CompetencyGrid {
             }
         }
 
+        public void removeSubject(Subject sub) {
+            subjects.Remove(sub);
+        }
+
         public string getName() {
             return name;
         }
@@ -107,6 +111,22 @@ namespace CompetencyGrid {
 
         public List<Subject> getSubjects() {
             return subjects;
+        }
+
+        //find a given subject by name
+        //also searches subSection of Subjects
+        public Subject getSubject(string name) {
+            foreach(Subject s in subjects) {
+                if(s.getName().Equals(name)) {
+                    return s;
+                }
+                if(s.hasSubSections()) {
+                    Subject temp = s.getSubSection(name);
+                    if (temp != null)
+                        return temp;
+                }
+            }
+            return null;
         }
 
         public string getVName() {
