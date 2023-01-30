@@ -19,6 +19,7 @@ namespace CompetencyGrid.Forms {
         private int currentSelectedIndex;
         private int compIndex;
         private string indent = "     ";
+        private string old;
 
         public CreateSection() {
             InitializeComponent();
@@ -106,46 +107,73 @@ namespace CompetencyGrid.Forms {
             Console.Write(template);
         }
 
-
+        //go back in comps list
         private void btn_previous_Click(object sender, EventArgs e) {
-        }
-
-        private void btn_next_Click(object sender, EventArgs e) {
             if (currentComp == null) return;
 
-            if(compIndex < currentComp.Count - 1) {
+            if (compIndex == 0) return;
+
+            if (compIndex > 0) {
+                compIndex--;
+                old = currentComp[compIndex];
+                tb_competence.Text = old;
+                label_competenceNumber.Text = (compIndex + 1).ToString()
+                    + ". Kompetenz im Themenbereich " + currentSub.getName();
+            }
+        }
+
+        //go to next on comps list
+        private void next() {
+            if (currentComp == null) return;
+
+            if (compIndex < currentComp.Count - 1) {
                 compIndex++;
-                tb_competence.Text = currentComp[compIndex];
-                label_competenceNumber.Text = (compIndex + 1).ToString() 
+                old = currentComp[compIndex];
+                tb_competence.Text = old;
+                label_competenceNumber.Text = (compIndex + 1).ToString()
                     + ". Kompetenz im Themenbereich " + currentSub.getName(); ;
                 return;
             }
-            if(compIndex == currentComp.Count - 1) {
-                tb_competence.Text = string.Empty;
+            if (compIndex == currentComp.Count - 1) {
+                old = string.Empty;
+                tb_competence.Text = old;
                 compIndex++;
-                label_competenceNumber.Text = (compIndex + 1).ToString() 
-                    + ". Kompetenz im Themenbereich " + currentSub.getName(); ;
-                return;
+                label_competenceNumber.Text = (compIndex + 1).ToString()
+                    + ". Kompetenz im Themenbereich " + currentSub.getName();
             }
+        }
+        private void btn_next_Click(object sender, EventArgs e) {
+            next();
+        }
 
+        //adds the new comp to the list or updates the changed one
+        private void btn_save_Click(object sender, EventArgs e) {
+            if (currentComp == null) return;
 
-            string content = tb_competence.Text;
-            if (content == null || content == string.Empty) return;
+            if (tb_competence.Text.Equals(old)) return;
 
-            currentSub.addCompetence(content);
-            compIndex++;
-            label_competenceNumber.Text = (compIndex + 1).ToString() 
-                + ". Kompetenz im Themenbereich " + currentSub.getName();
-            tb_competence.Text = string.Empty;
+            if (string.IsNullOrEmpty(old)) {
+                currentComp.Add(tb_competence.Text);
+            } else {
+                if (string.IsNullOrEmpty(tb_competence.Text)) {
+                    currentComp.Remove(old);
+                } else {
+                    currentComp[compIndex] = tb_competence.Text;
+                }
+            }
+            next();
             Console.Write(template);
         }
 
-        private void btn_save_Click(object sender, EventArgs e) {
-
+        //save the template as it is
+        private void btn_done_Click(object sender, EventArgs e) {
+            parent.done();
         }
 
         private void CreateSection_Load(object sender, EventArgs e) {
             parent = ParentForm as CreateTemplateForm;
+            label_competenceNumber.Text = "-";
+            tb_competence.ReadOnly = true;
         }
 
         private void CreateSection_Enter(object sender, EventArgs e) {
@@ -165,7 +193,7 @@ namespace CompetencyGrid.Forms {
             currentComp = currentSub.getCompetencies();
             currentSelectedIndex = listBox_subjects.SelectedIndex;
             compIndex = 0;
-            if(currentComp == null) {
+            if (currentComp == null) {
                 label_competenceNumber.Text = "-";
                 tb_competence.ReadOnly = true;
                 return;
@@ -173,12 +201,15 @@ namespace CompetencyGrid.Forms {
                 tb_competence.ReadOnly = false;
             }
             label_competenceNumber.Text = compIndex + 1 + ". Kompetenz im Themenbereich " + currentSub.getName();
-            if(currentComp.Count() == 0) {
-                tb_competence.Text = string.Empty;
+            if (currentComp.Count() == 0) {
+                old = string.Empty;
+                tb_competence.Text = old;
             } else {
-                tb_competence.Text = currentComp[compIndex];
+                old = currentComp[compIndex];
+                tb_competence.Text = old;
             }
         }
+
     }
 }
 

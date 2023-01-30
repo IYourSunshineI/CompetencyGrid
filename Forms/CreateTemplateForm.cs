@@ -24,5 +24,10 @@ namespace CompetencyGrid {
         public Template getTemplate() {
             return template;
         }
+
+        public void done() {
+            ObjectManager.SaveObject<Template>(template, "Templates", template.getName() + ".xml");
+            Close();
+        }
     }
 }

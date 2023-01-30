@@ -33,6 +33,7 @@
             this.label_competenceNumber = new System.Windows.Forms.Label();
             this.tb_competence = new System.Windows.Forms.TextBox();
             this.btn_addSubSection = new System.Windows.Forms.Button();
+            this.btn_done = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_back
@@ -42,7 +43,7 @@
             this.btn_back.Location = new System.Drawing.Point(3, 331);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(85, 27);
-            this.btn_back.TabIndex = 4;
+            this.btn_back.TabIndex = 5;
             this.btn_back.Text = "Zurück";
             this.btn_back.UseVisualStyleBackColor = true;
             this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
@@ -54,7 +55,7 @@
             this.btn_deleteSubject.Location = new System.Drawing.Point(234, 69);
             this.btn_deleteSubject.Name = "btn_deleteSubject";
             this.btn_deleteSubject.Size = new System.Drawing.Size(180, 27);
-            this.btn_deleteSubject.TabIndex = 2;
+            this.btn_deleteSubject.TabIndex = 3;
             this.btn_deleteSubject.Text = "Themenbereich löschen";
             this.btn_deleteSubject.UseVisualStyleBackColor = true;
             this.btn_deleteSubject.Click += new System.EventHandler(this.btn_deleteSubject_Click);
@@ -75,10 +76,10 @@
             // 
             this.btn_previous.AutoSize = true;
             this.btn_previous.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_previous.Location = new System.Drawing.Point(314, 331);
+            this.btn_previous.Location = new System.Drawing.Point(223, 331);
             this.btn_previous.Name = "btn_previous";
             this.btn_previous.Size = new System.Drawing.Size(85, 27);
-            this.btn_previous.TabIndex = 5;
+            this.btn_previous.TabIndex = 6;
             this.btn_previous.Text = "Vorherige";
             this.btn_previous.UseVisualStyleBackColor = true;
             this.btn_previous.Click += new System.EventHandler(this.btn_previous_Click);
@@ -87,10 +88,10 @@
             // 
             this.btn_next.AutoSize = true;
             this.btn_next.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_next.Location = new System.Drawing.Point(405, 331);
+            this.btn_next.Location = new System.Drawing.Point(314, 331);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(85, 27);
-            this.btn_next.TabIndex = 6;
+            this.btn_next.TabIndex = 7;
             this.btn_next.Text = "Nächste";
             this.btn_next.UseVisualStyleBackColor = true;
             this.btn_next.Click += new System.EventHandler(this.btn_next_Click);
@@ -99,10 +100,10 @@
             // 
             this.btn_save.AutoSize = true;
             this.btn_save.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_save.Location = new System.Drawing.Point(496, 331);
+            this.btn_save.Location = new System.Drawing.Point(405, 331);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(85, 27);
-            this.btn_save.TabIndex = 7;
+            this.btn_save.TabIndex = 8;
             this.btn_save.Text = "Speichern";
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
@@ -133,7 +134,7 @@
             this.tb_competence.Name = "tb_competence";
             this.tb_competence.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tb_competence.Size = new System.Drawing.Size(578, 178);
-            this.tb_competence.TabIndex = 3;
+            this.tb_competence.TabIndex = 4;
             // 
             // btn_addSubSection
             // 
@@ -142,15 +143,28 @@
             this.btn_addSubSection.Location = new System.Drawing.Point(234, 36);
             this.btn_addSubSection.Name = "btn_addSubSection";
             this.btn_addSubSection.Size = new System.Drawing.Size(180, 27);
-            this.btn_addSubSection.TabIndex = 11;
+            this.btn_addSubSection.TabIndex = 2;
             this.btn_addSubSection.Text = "Unterkategorie hinzufügen";
             this.btn_addSubSection.UseVisualStyleBackColor = true;
             this.btn_addSubSection.Click += new System.EventHandler(this.btn_addSubSection_Click);
+            // 
+            // btn_done
+            // 
+            this.btn_done.AutoSize = true;
+            this.btn_done.Font = new System.Drawing.Font("Roboto-Light", 10F);
+            this.btn_done.Location = new System.Drawing.Point(496, 331);
+            this.btn_done.Name = "btn_done";
+            this.btn_done.Size = new System.Drawing.Size(85, 27);
+            this.btn_done.TabIndex = 9;
+            this.btn_done.Text = "Fertig";
+            this.btn_done.UseVisualStyleBackColor = true;
+            this.btn_done.Click += new System.EventHandler(this.btn_done_Click);
             // 
             // CreateSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_done);
             this.Controls.Add(this.btn_addSubSection);
             this.Controls.Add(this.btn_back);
             this.Controls.Add(this.btn_deleteSubject);
@@ -186,5 +200,6 @@
         private System.Windows.Forms.Label label_competenceNumber;
         private System.Windows.Forms.TextBox tb_competence;
         private System.Windows.Forms.Button btn_addSubSection;
+        private System.Windows.Forms.Button btn_done;
     }
 }
