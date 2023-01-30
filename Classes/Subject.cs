@@ -98,6 +98,11 @@ namespace CompetencyGrid.Classes {
             return null;
         }
 
+        public int getSubCount() {
+            if (subSections == null) return 0;
+            return subSections.Count;
+        }
+
         public List<string> getOptionalSpecifications() {
             return optionalSpecifications;
         }

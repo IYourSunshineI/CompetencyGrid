@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
 
@@ -31,6 +32,21 @@ namespace CompetencyGrid {
             reader.Close();
             fileStream.Close();
             return serializableObject;
+        }
+
+        //loads object of whole folder
+        public static T[] LoadObjects<T>(string folderName) {
+            try {
+                string[] names = Directory.GetFiles(folderName);
+                T[] files = new T[names.Length];
+                for (int i = 0; i < names.Length; i++) {
+                    files[i] = LoadObject<T>(folderName, Path.GetFileName(names[i]));
+                }
+                return files;
+            } catch (DirectoryNotFoundException e) {
+                Console.WriteLine(e.Message);
+            }
+            return null;
         }
     }
 }

@@ -64,6 +64,14 @@ namespace CompetencyGrid {
             subjects.Add(sub);
         }
 
+        public void insertSubject(int index, Subject sub) {
+            subjects.Insert(index, sub);
+        }
+
+        public int getSubjectIndex(Subject sub) {
+            return subjects.IndexOf(sub);
+        }
+
         public void removeSubject(string name) {
             foreach (Subject subject in subjects) {
                 if (subject.getName().Equals(name)) {

@@ -27,28 +27,36 @@ namespace CompetencyGrid.Forms {
             currentComp = new List<string>();
         }
 
+        public void init(Template template) {
+            this.template = template;
+            List<Subject> subjects = template.getSubjects();
+            foreach (Subject subject in subjects) {
+                listBox_subjects.Items.Add(subject.getName());
+                if (subject.hasSubSections()) {
+                    List<Subject> sub = subject.getSubSections();
+                    foreach (Subject subSection in sub) {
+                        listBox_subjects.Items.Add(indent + subSection.getName());
+                    }
+                }
+            }
+        }
+
         public void addSubject(Subject temp) {
-            template.addSubject(temp);
-            listBox_subjects.Items.Add(temp.getName());
+            if (currentSub == null) {
+                template.addSubject(temp);
+                listBox_subjects.Items.Add(temp.getName());
+            } else {
+                int index = template.getSubjectIndex(currentSub);
+                template.insertSubject(index + 1, temp);
+                listBox_subjects.Items.Insert(currentSelectedIndex + currentSub.getSubCount() + 1, temp.getName());
+            }
         }
 
         public void addSubSubject(Subject temp) {
             currentSub.addSubSection(temp);
             sub[temp.getName()] = currentSub.getName();
-            listBox_subjects.Items.Insert(currentSelectedIndex + 1, indent + temp.getName());
-
-            /*
-            string currentSelected = listBox_subjects.SelectedItem.ToString();
-            int index = listBox_subjects.Items.IndexOf(currentSelected);
-            List<Subject> subjects = template.getSubjects();
-            foreach (Subject s in subjects) {
-                if (s.getName().Equals(currentSelected)) {
-                    s.addSubSection(temp);
-                    return;
-                }
-            }*/
+            listBox_subjects.Items.Insert(currentSelectedIndex + currentSub.getSubCount(), indent + temp.getName());
         }
-
 
         private void btn_back_Click(object sender, EventArgs e) {
             parent.switchForm(this);
@@ -66,17 +74,6 @@ namespace CompetencyGrid.Forms {
 
             NewSubjectForm temp = new NewSubjectForm(this, true);
             temp.Show();
-
-            /*
-            if (listBox_subjects.SelectedItem == null)
-                return;
-
-            string subSection = listBox_subjects.SelectedItem.ToString();
-            subSection = subSection.Trim();
-            if (!sub.ContainsKey(subSection)) {
-                NewSubjectForm temp = new NewSubjectForm(this, true);
-                temp.Show();
-            }*/
         }
 
         private void btn_deleteSubject_Click(object sender, EventArgs e) {
@@ -162,6 +159,7 @@ namespace CompetencyGrid.Forms {
                 }
             }
             next();
+
             Console.Write(template);
         }
 
@@ -195,6 +193,7 @@ namespace CompetencyGrid.Forms {
             compIndex = 0;
             if (currentComp == null) {
                 label_competenceNumber.Text = "-";
+                tb_competence.Text = string.Empty;
                 tb_competence.ReadOnly = true;
                 return;
             } else {
@@ -212,4 +211,3 @@ namespace CompetencyGrid.Forms {
 
     }
 }
-

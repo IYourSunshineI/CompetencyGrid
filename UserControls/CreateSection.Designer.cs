@@ -52,7 +52,7 @@
             // 
             this.btn_deleteSubject.AutoSize = true;
             this.btn_deleteSubject.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_deleteSubject.Location = new System.Drawing.Point(234, 69);
+            this.btn_deleteSubject.Location = new System.Drawing.Point(404, 69);
             this.btn_deleteSubject.Name = "btn_deleteSubject";
             this.btn_deleteSubject.Size = new System.Drawing.Size(180, 27);
             this.btn_deleteSubject.TabIndex = 3;
@@ -64,7 +64,7 @@
             // 
             this.btn_addSubject.AutoSize = true;
             this.btn_addSubject.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_addSubject.Location = new System.Drawing.Point(234, 3);
+            this.btn_addSubject.Location = new System.Drawing.Point(404, 3);
             this.btn_addSubject.Name = "btn_addSubject";
             this.btn_addSubject.Size = new System.Drawing.Size(180, 27);
             this.btn_addSubject.TabIndex = 1;
@@ -114,7 +114,7 @@
             this.listBox_subjects.ItemHeight = 23;
             this.listBox_subjects.Location = new System.Drawing.Point(3, 3);
             this.listBox_subjects.Name = "listBox_subjects";
-            this.listBox_subjects.Size = new System.Drawing.Size(221, 96);
+            this.listBox_subjects.Size = new System.Drawing.Size(395, 119);
             this.listBox_subjects.TabIndex = 9;
             this.listBox_subjects.SelectedIndexChanged += new System.EventHandler(this.listBox_subjects_SelectedIndexChanged);
             // 
@@ -140,7 +140,7 @@
             // 
             this.btn_addSubSection.AutoSize = true;
             this.btn_addSubSection.Font = new System.Drawing.Font("Roboto-Light", 10F);
-            this.btn_addSubSection.Location = new System.Drawing.Point(234, 36);
+            this.btn_addSubSection.Location = new System.Drawing.Point(404, 36);
             this.btn_addSubSection.Name = "btn_addSubSection";
             this.btn_addSubSection.Size = new System.Drawing.Size(180, 27);
             this.btn_addSubSection.TabIndex = 2;

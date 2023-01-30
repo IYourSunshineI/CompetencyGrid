@@ -16,6 +16,18 @@ namespace CompetencyGrid.Forms {
             InitializeComponent();
         }
 
+        public void init(Template template) {
+            this.template = template;
+            tb_fileName.Text = template.getName();
+            tb_klasse.Text = template.getKlasse();
+            tb_schuljahr.Text = template.getSchoolYear();
+            tb_semester.Text = template.getSemester();
+            tb_ort.Text = template.getOrt();
+            tb_SKZ.Text = template.getSKZ();
+            tb_PLZ.Text = template.getPlz();
+            tb_Adr.Text = template.getAdr();
+        }
+
         private void btn_next_Click(object sender, EventArgs e) {
             bool flag = false;
             foreach (CueTextBox tb in Controls.OfType<CueTextBox>()) {
@@ -39,7 +51,9 @@ namespace CompetencyGrid.Forms {
                 //refactor all attr. (inefficient but idcrn)
                 template.refactor(tb_fileName.Text, tb_SKZ.Text, tb_ort.Text, tb_PLZ.Text,
                     tb_Adr.Text, tb_klasse.Text, tb_schuljahr.Text, tb_semester.Text);
+                parent.refactor();
             }
+            parent.Text = template.getName();
             parent.switchForm(this);
         }
 
