@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompetencyGrid.Classes {
+namespace CompetencyGrid.Classes{
 
     [DataContract]
-    public class Subject {
+    public class Subject{
         [DataMember]
         private string name;
 
@@ -63,6 +63,7 @@ namespace CompetencyGrid.Classes {
 
         public void addCompetence(string competence) {
             competencies.Add(competence);
+            compScores[competence] = 3;
         }
 
         public void addCompetence(string competence, int index) {
@@ -107,12 +108,16 @@ namespace CompetencyGrid.Classes {
             return optionalSpecifications;
         }
 
-        public void addCompScore(string comp, int score) {
+        public void changeCompScore(string comp, int score) {
             compScores[comp] = score;
         }
 
         public int getCompScore(string comp) {
-            return compScores[comp];
+            try {
+                return compScores[comp];
+            } catch (KeyNotFoundException) {
+                return 3;
+            }
         }
 
         public override string ToString() {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Xml;
@@ -47,6 +48,12 @@ namespace CompetencyGrid {
                 Console.WriteLine(e.Message);
             }
             return null;
+        }
+
+        //makes a deep copy of a given object
+        public static T deepCopy<T>(T obj) {
+            var serialized = JsonConvert.SerializeObject(obj);
+            return JsonConvert.DeserializeObject<T>(serialized);
         }
     }
 }

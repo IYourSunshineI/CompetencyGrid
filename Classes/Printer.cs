@@ -123,7 +123,7 @@ namespace CompetencyGrid.Classes {
                 }
             }
             List<string> opt = s.getOptionalSpecifications();
-            if (opt != null) {
+            if (opt != null && opt.Count > 0) {
                 PdfPCell cell = new PdfPCell(new Paragraph("Zu den folgenden Themen hast du gearbeitet:", calibriNormal));
                 cell.Colspan = 4;
                 cell.Border = 0;

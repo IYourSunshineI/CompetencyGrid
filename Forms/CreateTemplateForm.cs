@@ -39,9 +39,13 @@ namespace CompetencyGrid {
 
         public void done() {
             ObjectManager.SaveObject<Template>(template, "Templates", template.getName() + ".xml");
+            /*
             if (refactored) {
                 File.Delete("Templates/" + name + ".xml");
             }
+            if (File.Exists("PDFs/" + template.getName() + ".pdf"))
+                File.Delete("PDFs/" + template.getName() + ".pdf");
+            */
             Close();
         }
 

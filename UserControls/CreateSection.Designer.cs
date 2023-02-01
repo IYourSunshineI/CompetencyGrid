@@ -34,6 +34,8 @@
             this.tb_competence = new System.Windows.Forms.TextBox();
             this.btn_addSubSection = new System.Windows.Forms.Button();
             this.btn_done = new System.Windows.Forms.Button();
+            this.btn_preview = new System.Windows.Forms.Button();
+            this.btn_addDetails = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_back
@@ -160,10 +162,35 @@
             this.btn_done.UseVisualStyleBackColor = true;
             this.btn_done.Click += new System.EventHandler(this.btn_done_Click);
             // 
+            // btn_preview
+            // 
+            this.btn_preview.AutoSize = true;
+            this.btn_preview.Font = new System.Drawing.Font("Roboto-Light", 10F);
+            this.btn_preview.Location = new System.Drawing.Point(132, 331);
+            this.btn_preview.Name = "btn_preview";
+            this.btn_preview.Size = new System.Drawing.Size(85, 27);
+            this.btn_preview.TabIndex = 11;
+            this.btn_preview.Text = "Vorschau";
+            this.btn_preview.UseVisualStyleBackColor = true;
+            this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
+            // 
+            // btn_addDetails
+            // 
+            this.btn_addDetails.Font = new System.Drawing.Font("Roboto-Light", 10F);
+            this.btn_addDetails.Location = new System.Drawing.Point(404, 102);
+            this.btn_addDetails.Name = "btn_addDetails";
+            this.btn_addDetails.Size = new System.Drawing.Size(177, 42);
+            this.btn_addDetails.TabIndex = 12;
+            this.btn_addDetails.Text = "bearbeitete Themen \r\nhinzufügen";
+            this.btn_addDetails.UseVisualStyleBackColor = true;
+            this.btn_addDetails.Click += new System.EventHandler(this.btn_addDetails_Click);
+            // 
             // CreateSection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_addDetails);
+            this.Controls.Add(this.btn_preview);
             this.Controls.Add(this.btn_done);
             this.Controls.Add(this.btn_addSubSection);
             this.Controls.Add(this.btn_back);
@@ -201,5 +228,7 @@
         private System.Windows.Forms.TextBox tb_competence;
         private System.Windows.Forms.Button btn_addSubSection;
         private System.Windows.Forms.Button btn_done;
+        private System.Windows.Forms.Button btn_preview;
+        private System.Windows.Forms.Button btn_addDetails;
     }
 }

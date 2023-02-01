@@ -10,9 +10,9 @@ namespace CompetencyGrid {
             this.GotFocus += new EventHandler(gotFocusHandler);
         }
 
-        private void loadTemplates() {
+        private void loadTemplates(ToolStripMenuItem menuItem, EventHandler eventHandler) {
             //loading templates and putting them into menuBar
-            vorlageBearbeitenToolStripMenuItem.DropDownItems.Clear();
+            menuItem.DropDownItems.Clear();
 
             templates = ObjectManager.LoadObjects<Template>("Templates");
             if (templates == null) return;
@@ -22,8 +22,8 @@ namespace CompetencyGrid {
                 item.ImageKey = template.getName();
                 item.Name = template.getName() + "ToolStripMenuItem";
                 item.Text = template.getName();
-                item.Click += new EventHandler(MenuItemClickHandler);
-                vorlageBearbeitenToolStripMenuItem.DropDownItems.Add(item);
+                item.Click += new EventHandler(eventHandler);
+                menuItem.DropDownItems.Add(item);
             }
         }
 
@@ -32,7 +32,7 @@ namespace CompetencyGrid {
             temp.Show();
         }
 
-        private void MenuItemClickHandler(object sender, EventArgs e) {
+        private void ChangeTemplateClickHandler(object sender, EventArgs e) {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             foreach (Template t in templates) {
                 if (t.getName().Equals(menuItem.Text)) {
@@ -42,8 +42,19 @@ namespace CompetencyGrid {
             }
         }
 
+        private void EvaluateTemplateClickHandler(object sender, EventArgs e) {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            foreach(Template t in templates) {
+                if (t.getName().Equals(menuItem.Text)) {
+                    evaluateStudent.init(t);
+                    return;
+                }
+            }
+        }
+
         private void gotFocusHandler(object sender, EventArgs e) {
-            loadTemplates();
+            loadTemplates(vorlageBearbeitenToolStripMenuItem, ChangeTemplateClickHandler);
+            loadTemplates(bewertungBeginnenToolStripMenuItem, EvaluateTemplateClickHandler);
         }
     }
 }

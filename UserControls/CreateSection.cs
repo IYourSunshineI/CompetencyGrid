@@ -24,7 +24,6 @@ namespace CompetencyGrid.Forms {
         public CreateSection() {
             InitializeComponent();
             sub = new Dictionary<string, string>();
-            currentComp = new List<string>();
         }
 
         public void init(Template template) {
@@ -35,6 +34,7 @@ namespace CompetencyGrid.Forms {
                 if (subject.hasSubSections()) {
                     List<Subject> sub = subject.getSubSections();
                     foreach (Subject subSection in sub) {
+                        this.sub[subSection.getName()] = subject.getName();
                         listBox_subjects.Items.Add(indent + subSection.getName());
                     }
                 }
@@ -115,7 +115,7 @@ namespace CompetencyGrid.Forms {
                 old = currentComp[compIndex];
                 tb_competence.Text = old;
                 label_competenceNumber.Text = (compIndex + 1).ToString()
-                    + ". Kompetenz im Themenbereich " + currentSub.getName();
+                    + ". Kompetenz in " + currentSub.getName();
             }
         }
 
@@ -128,7 +128,7 @@ namespace CompetencyGrid.Forms {
                 old = currentComp[compIndex];
                 tb_competence.Text = old;
                 label_competenceNumber.Text = (compIndex + 1).ToString()
-                    + ". Kompetenz im Themenbereich " + currentSub.getName(); ;
+                    + ". Kompetenz in " + currentSub.getName(); ;
                 return;
             }
             if (compIndex == currentComp.Count - 1) {
@@ -136,7 +136,7 @@ namespace CompetencyGrid.Forms {
                 tb_competence.Text = old;
                 compIndex++;
                 label_competenceNumber.Text = (compIndex + 1).ToString()
-                    + ". Kompetenz im Themenbereich " + currentSub.getName();
+                    + ". Kompetenz in " + currentSub.getName();
             }
         }
         private void btn_next_Click(object sender, EventArgs e) {
@@ -150,7 +150,7 @@ namespace CompetencyGrid.Forms {
             if (tb_competence.Text.Equals(old)) return;
 
             if (string.IsNullOrEmpty(old)) {
-                currentComp.Add(tb_competence.Text);
+                currentSub.addCompetence(tb_competence.Text);
             } else {
                 if (string.IsNullOrEmpty(tb_competence.Text)) {
                     currentComp.Remove(old);
@@ -199,7 +199,7 @@ namespace CompetencyGrid.Forms {
             } else {
                 tb_competence.ReadOnly = false;
             }
-            label_competenceNumber.Text = compIndex + 1 + ". Kompetenz im Themenbereich " + currentSub.getName();
+            label_competenceNumber.Text = compIndex + 1 + ". Kompetenz in " + currentSub.getName();
             if (currentComp.Count() == 0) {
                 old = string.Empty;
                 tb_competence.Text = old;
@@ -209,5 +209,22 @@ namespace CompetencyGrid.Forms {
             }
         }
 
+        private void btn_preview_Click(object sender, EventArgs e) {
+            Printer.printToPDF("PDFs", template);
+            System.Diagnostics.Process.Start(Application.StartupPath + "/PDFs/" + template.getName() + ".pdf");
+        }
+
+        private void btn_addDetails_Click(object sender, EventArgs e) {
+            if (currentSub == null) return;
+
+            try {
+                string sub = this.sub[currentSub.getName()];
+                return;
+            } catch (KeyNotFoundException) {
+                AddDetailsForm temp = new AddDetailsForm(currentSub);
+                temp.Show();
+            }
+
+        }
     }
 }
