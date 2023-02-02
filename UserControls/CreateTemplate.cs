@@ -32,7 +32,7 @@ namespace CompetencyGrid.Forms {
             bool flag = false;
             foreach (CueTextBox tb in Controls.OfType<CueTextBox>()) {
                 if (tb.Text == null || tb.Text == string.Empty) {
-                    tb.BackColor = Color.Red;
+                    tb.BackColor = Color.FromArgb(255, 192, 192);
                     flag = true;
                 } else {
                     tb.BackColor = Color.White;
@@ -51,7 +51,6 @@ namespace CompetencyGrid.Forms {
                 //refactor all attr. (inefficient but idcrn)
                 template.refactor(tb_fileName.Text, tb_SKZ.Text, tb_ort.Text, tb_PLZ.Text,
                     tb_Adr.Text, tb_klasse.Text, tb_schuljahr.Text, tb_semester.Text);
-                parent.refactor();
             }
             parent.Text = template.getName();
             parent.switchForm(this);

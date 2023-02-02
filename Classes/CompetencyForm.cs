@@ -1,5 +1,6 @@
 ﻿using CompetencyGrid.Classes;
 using iTextSharp.text;
+using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
@@ -13,6 +14,8 @@ namespace CompetencyGrid {
         private string nName;
         [DataMember]
         private string name;
+        [DataMember]
+        private Template template;
         [DataMember]
         private string SKZ;
         [DataMember]
@@ -32,10 +35,8 @@ namespace CompetencyGrid {
         [DataMember]
         List<Subject> subjects;
 
-        public CompetencyForm(string vName, string nName, Template template) {
-            this.vName = vName;
-            this.nName = nName;
-            name = vName + nName;
+        public CompetencyForm(Template template) {
+            this.template = template;
             SKZ = template.getSKZ();
             ort = template.getOrt();
             plz = template.getPlz();
@@ -43,7 +44,32 @@ namespace CompetencyGrid {
             klasse = template.getKlasse();
             schoolYear = template.getSchoolYear();
             semester = template.getSemester();
-            subjects = template.getSubjects();
+            subjects = ObjectManager.deepCopy<List<Subject>>(template.getSubjects());
+        }
+
+        public CompetencyForm(string vName, string nName, Template template) {
+            this.vName = vName;
+            this.nName = nName;
+            name = vName + nName;
+            this.template = template;
+            SKZ = template.getSKZ();
+            ort = template.getOrt();
+            plz = template.getPlz();
+            adr = template.getAdr();
+            klasse = template.getKlasse();
+            schoolYear = template.getSchoolYear();
+            semester = template.getSemester();
+            subjects = ObjectManager.deepCopy<List<Subject>>(template.getSubjects());
+        }
+
+        public void setName(string vName, string nName) {
+            this.vName = vName;
+            this.nName = nName;
+            name = vName + nName;
+        }
+
+        public string getTemplateName() {
+            return template.getName();
         }
 
         public string getDescription() {
@@ -71,12 +97,30 @@ namespace CompetencyGrid {
             return ort;
         }
 
+        public Subject getSubject(string name) {
+            foreach (Subject s in subjects) {
+                if (s.getName().Equals(name)) {
+                    return s;
+                }
+                if (s.hasSubSections()) {
+                    Subject temp = s.getSubSection(name);
+                    if (temp != null)
+                        return temp;
+                }
+            }
+            return null;
+        }
+
         public List<Subject> getSubjects() {
             return subjects;
         }
 
         public string getVName() {
             return vName;
+        }
+
+        public Template GetTemplate() {
+            return template;
         }
     }
 }

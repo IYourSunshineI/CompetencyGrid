@@ -4,6 +4,7 @@ using System.Windows.Forms;
 namespace CompetencyGrid {
     public partial class MainForm : Form {
         private Template[] templates;
+        private CompetencyForm[] forms;
 
         public MainForm() {
             InitializeComponent();
@@ -24,6 +25,22 @@ namespace CompetencyGrid {
                 item.Text = template.getName();
                 item.Click += new EventHandler(eventHandler);
                 menuItem.DropDownItems.Add(item);
+            }
+        }
+
+        private void loadStudents(EventHandler eventHandler) {
+            bewertungBearbeitenToolStripMenuItem.DropDownItems.Clear();
+
+            forms = ObjectManager.LoadObjects<CompetencyForm>("Students");
+            if(forms == null) return;
+
+            foreach(CompetencyForm student in forms) {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.ImageKey = student.getName();
+                item.Name = student.getName() + "ToolStripMenuItem";
+                item.Text = student.getName();
+                item.Click += new EventHandler(eventHandler);
+                bewertungBearbeitenToolStripMenuItem.DropDownItems.Add(item);
             }
         }
 
@@ -52,9 +69,23 @@ namespace CompetencyGrid {
             }
         }
 
+        private void ChangeStudentClickHandler(object sender, EventArgs e) {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            foreach (CompetencyForm form in forms) {
+                if (form.getName().Equals(menuItem.Text)) {
+                    evaluateStudent.init(form);
+                    return;
+                }
+            }
+        }
+
         private void gotFocusHandler(object sender, EventArgs e) {
             loadTemplates(vorlageBearbeitenToolStripMenuItem, ChangeTemplateClickHandler);
             loadTemplates(bewertungBeginnenToolStripMenuItem, EvaluateTemplateClickHandler);
+        }
+
+        private void startToolStripMenuItem_Click(object sender, EventArgs e) {
+            loadStudents(ChangeStudentClickHandler);
         }
     }
 }

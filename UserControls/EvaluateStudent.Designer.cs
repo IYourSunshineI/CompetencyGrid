@@ -23,6 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EvaluateStudent));
             this.panel_lowerPart = new System.Windows.Forms.Panel();
             this.panel_splitRight = new System.Windows.Forms.Panel();
             this.panel_comp = new System.Windows.Forms.Panel();
@@ -41,11 +43,11 @@
             this.btn_preview = new System.Windows.Forms.Button();
             this.btn_new = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.tb_nName = new CueTextBox();
             this.tb_vName = new CueTextBox();
             this.panel_lowerPart.SuspendLayout();
             this.panel_splitRight.SuspendLayout();
-            this.panel_comp.SuspendLayout();
             this.panel_splitLeft.SuspendLayout();
             this.panel_Subjects.SuspendLayout();
             this.SuspendLayout();
@@ -233,6 +235,7 @@
             this.btn_save.TabIndex = 5;
             this.btn_save.Text = "Speichern";
             this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // btn_preview
             // 
@@ -245,6 +248,7 @@
             this.btn_preview.TabIndex = 6;
             this.btn_preview.Text = "Vorschau";
             this.btn_preview.UseVisualStyleBackColor = true;
+            this.btn_preview.Click += new System.EventHandler(this.btn_preview_Click);
             // 
             // btn_new
             // 
@@ -257,6 +261,7 @@
             this.btn_new.TabIndex = 7;
             this.btn_new.Text = "Nächster Schüler";
             this.btn_new.UseVisualStyleBackColor = true;
+            this.btn_new.Click += new System.EventHandler(this.btn_new_Click);
             // 
             // label1
             // 
@@ -269,6 +274,15 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "made by |YourSunshine|";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.BalloonTipText = "Datei wurde erfolgreich gespeichert";
+            this.notifyIcon.BalloonTipTitle = "Gespeichert";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Kompetenzraster";
+            this.notifyIcon.Visible = true;
             // 
             // tb_nName
             // 
@@ -309,7 +323,6 @@
             this.panel_lowerPart.ResumeLayout(false);
             this.panel_splitRight.ResumeLayout(false);
             this.panel_splitRight.PerformLayout();
-            this.panel_comp.ResumeLayout(false);
             this.panel_splitLeft.ResumeLayout(false);
             this.panel_splitLeft.PerformLayout();
             this.panel_Subjects.ResumeLayout(false);
@@ -339,9 +352,7 @@
         private System.Windows.Forms.Button btn_preview;
         private System.Windows.Forms.Button btn_new;
         private System.Windows.Forms.Panel panel_comp;
-        private CompScore compScore1;
-        private CompScore compScore2;
-        private CompScore compScore3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }

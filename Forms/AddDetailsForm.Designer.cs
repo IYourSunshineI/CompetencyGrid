@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddDetailsForm));
             this.btn_add = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
             this.tb_theme = new CueTextBox();
@@ -66,6 +67,7 @@
             this.Controls.Add(this.btn_add);
             this.Controls.Add(this.tb_theme);
             this.Font = new System.Drawing.Font("Roboto-Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximumSize = new System.Drawing.Size(595, 381);
             this.MinimumSize = new System.Drawing.Size(595, 381);

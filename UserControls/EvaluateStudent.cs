@@ -1,4 +1,5 @@
 ﻿using CompetencyGrid.Classes;
+using CompetencyGrid.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,20 +12,37 @@ using System.Windows.Forms;
 
 namespace CompetencyGrid.UserControls {
     public partial class EvaluateStudent : UserControl {
-        private Template template;
         private List<Subject> subjects;
         private Subject activeSubject;
+        private CompetencyForm form;
+        private Template template;
+        private bool saved = false;
         public EvaluateStudent() {
             InitializeComponent();
             this.Enabled = false;
             panel_splitRight.Enabled = false;
+            btn_save.Click += lastClickedHandler;
         }
 
         public void init(Template template) {
             this.template = template;
-            this.subjects = template.getSubjects();
+            form = new CompetencyForm(template);
             this.Enabled = true;
-            label_templateName.Text = template.getName();
+            label_templateName.Text = form.getTemplateName();
+            this.subjects = form.getSubjects();
+            panel_comp.Controls.Clear();
+            initSubjects();
+        }
+
+        public void init(CompetencyForm form) {
+            this.template = form.GetTemplate();
+            this.form = form;
+            this.Enabled = true;
+            label_templateName.Text = form.getTemplateName();
+            this.subjects = form.getSubjects();
+            tb_vName.Text = form.getVName();
+            tb_nName.Text = form.getNName();
+            panel_comp.Controls.Clear();
             initSubjects();
         }
 
@@ -48,6 +66,7 @@ namespace CompetencyGrid.UserControls {
 
                 if (subject.hasSubSections()) {
                     b.Enabled = false;
+                    b.BackColor = Color.White;
                     List<Subject> subSubjects = subject.getSubSections();
                     foreach (Subject subSubject in subSubjects) {
                         Button subb = new Button();
@@ -57,7 +76,7 @@ namespace CompetencyGrid.UserControls {
                         subb.Size = new Size(260, 33);
                         subb.Text = subSubject.getName();
                         subb.AutoEllipsis = true;
-                        subb.TextAlign = ContentAlignment.MiddleCenter;
+                        subb.TextAlign = ContentAlignment.MiddleRight;
                         subb.BackColor = Color.FromArgb(255, 192, 192);
                         subb.Click += subjectClickHandler;
                         panel_Subjects.Controls.Add(subb);
@@ -100,9 +119,79 @@ namespace CompetencyGrid.UserControls {
 
         private void subjectClickHandler(object sender, EventArgs e) {
             Button b = sender as Button;
+            b.BackColor = Color.FromArgb(192, 255, 192);
             string name = b.Text;
-            activeSubject = template.getSubject(name);
+            activeSubject = form.getSubject(name);
             initComp(activeSubject);
+        }
+
+        private void btn_save_Click(object sender, EventArgs e) {
+            bool flag = false;
+            if (string.IsNullOrEmpty(tb_vName.Text)) {
+                tb_vName.BackColor = Color.FromArgb(255, 192, 192);
+                flag = true;
+            } else
+                tb_vName.BackColor = Color.White;
+            if (string.IsNullOrEmpty(tb_nName.Text)) {
+                tb_nName.BackColor = Color.FromArgb(255, 192, 192);
+                flag = true;
+            } else
+                tb_nName.BackColor = Color.White;
+            if (flag) return;
+
+            form.setName(tb_vName.Text, tb_nName.Text);
+            ObjectManager.SaveObject<CompetencyForm>(form, "Students", form.getName() + ".xml");
+            Printer.printToPDF("PDFs/Students", form);
+            notifyIcon.BalloonTipText = form.getName() + ".pdf wurde erfolgreich gespeichert";
+            notifyIcon.ShowBalloonTip(1000);
+        }
+
+        private void btn_preview_Click(object sender, EventArgs e) {
+            bool flag = false;
+            if (string.IsNullOrEmpty(tb_vName.Text)) {
+                tb_vName.BackColor = Color.FromArgb(255, 192, 192);
+                flag = true;
+            } else
+                tb_vName.BackColor = Color.White;
+            if (string.IsNullOrEmpty(tb_nName.Text)) {
+                tb_nName.BackColor = Color.FromArgb(255, 192, 192);
+                flag = true;
+            } else
+                tb_nName.BackColor = Color.White;
+            if (flag) return;
+
+            form.setName(tb_vName.Text, tb_nName.Text);
+            Printer.printToPDF("PDFs/Students", form);
+            System.Diagnostics.Process.Start(Application.StartupPath + "/PDFs/Students/" + form.getName() + ".pdf");
+        }
+
+        private void btn_new_Click(object sender, EventArgs e) {
+            if (!saved) {
+                WarningForm w = new WarningForm(this);
+                w.Show();
+            } else {
+                newStudent();
+            }
+        }
+
+        public void newStudent() {
+            panel_comp.Controls.Clear();
+            tb_nName.Text = string.Empty;
+            tb_vName.Text = string.Empty;
+            init(template);
+        }
+
+        public void lastClickedHandler(object sender, EventArgs e) {
+            if (sender.GetType() == typeof(Button)) {
+                Button b = sender as Button;
+                if (b.Text.Equals("Speichern"))
+                    saved = true;
+                else
+                    saved = false;
+            }
+            if (sender.GetType() == typeof(RadioButton)) {
+                saved = false;
+            }
         }
     }
 }

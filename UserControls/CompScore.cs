@@ -16,6 +16,7 @@ namespace CompetencyGrid.UserControls {
             this.parent = parent;
             foreach(RadioButton rb in panel.Controls.OfType<RadioButton>()) {
                 rb.CheckedChanged += checkedRadioChangedHandler;
+                rb.Click += parent.lastClickedHandler;
             }
         }
 

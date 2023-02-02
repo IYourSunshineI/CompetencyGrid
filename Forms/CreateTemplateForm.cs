@@ -8,7 +8,6 @@ using System.Windows.Forms;
 namespace CompetencyGrid {
     public partial class CreateTemplateForm : Form {
         private Template template;
-        private bool refactored = false;
         private string name;
 
         public CreateTemplateForm() {
@@ -39,18 +38,7 @@ namespace CompetencyGrid {
 
         public void done() {
             ObjectManager.SaveObject<Template>(template, "Templates", template.getName() + ".xml");
-            /*
-            if (refactored) {
-                File.Delete("Templates/" + name + ".xml");
-            }
-            if (File.Exists("PDFs/" + template.getName() + ".pdf"))
-                File.Delete("PDFs/" + template.getName() + ".pdf");
-            */
             Close();
-        }
-
-        public void refactor() {
-            refactored = true;
         }
     }
 }

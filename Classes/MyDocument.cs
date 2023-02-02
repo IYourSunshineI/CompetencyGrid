@@ -12,6 +12,7 @@ namespace CompetencyGrid.Classes {
         string getHeader();
         string getDescription();
         List<Subject> getSubjects();
+        Subject getSubject(string name);
         string getOrt();
     }
 }
